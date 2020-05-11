@@ -16,3 +16,16 @@ function init() {
   barchart = new Barchart(state, setGlobalState);
   draw();
 }
+
+function draw() {
+    barchart.draw(state, setGlobalState);
+  }
+
+// UTILITY FUNCTION: 
+// state-updating function
+function setGlobalState(nextState) {
+    state = { ...state, ...nextState };
+    console.log("new state:", state);
+    draw();
+  }
+  
