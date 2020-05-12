@@ -58,3 +58,22 @@ for user, num_complete in top_sources:
     users.append(str(user))
 
 max_users = " and ".join(users)
+
+
+
+########### data re-shaping
+
+import pandas as pd 
+
+data = pd.read_csv("/Users/hopecj/personal/gitmo/data/guantanamo-all-story-urls-20200503233646.csv")
+data['count'] = 1
+splits = data['publish_date'].str.split("-", expand=True)
+data['year'] = splits[0]
+
+out = data.groupby(['year','media_name']).sum()
+
+out = data.groupby(['year','media_name'])['count'].count()
+out = out.to_frame()
+out.reset_index(inplace=True)
+
+out.to_csv("/Users/hopecj/personal/gitmo/data/media_occurences.csv")

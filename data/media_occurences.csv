@@ -1,0 +1,236 @@
+,year,media_name,count
+0,2010,CNET,1
+1,2010,CNN,50
+2,2010,Daily Mail,46
+3,2010,Daily News,40
+4,2010,Daily Telegraph,18
+5,2010,FOX News,100
+6,2010,Guardian US,21
+7,2010,Huffington Post,24
+8,2010,LA Times,71
+9,2010,MSNBC,64
+10,2010,NY Post,51
+11,2010,New York Times,20
+12,2010,Reuters ,57
+13,2010,The Boston Globe,125
+14,2010,Time,20
+15,2010,USA Today,8
+16,2010,Wall Street Journal,53
+17,2010,Washington Post,129
+18,2010,cbs news,38
+19,2010,sfchronicle,18
+20,2011,CNET,4
+21,2011,CNN,93
+22,2011,Daily Mail,95
+23,2011,Daily News,36
+24,2011,Daily Telegraph,49
+25,2011,FOX News,122
+26,2011,Forbes,15
+27,2011,Guardian US,19
+28,2011,Huffington Post,73
+29,2011,LA Times,117
+30,2011,MSNBC,71
+31,2011,NY Post,39
+32,2011,New York Times,37
+33,2011,Newsweek ,1
+34,2011,Reuters ,76
+35,2011,The Boston Globe,167
+36,2011,Time,61
+37,2011,USA Today,17
+38,2011,Wall Street Journal,100
+39,2011,Washington Post,237
+40,2011,cbs news,84
+41,2011,sfchronicle,36
+42,2012,CNET,2
+43,2012,CNN,90
+44,2012,Daily Mail,108
+45,2012,Daily News,63
+46,2012,Daily Telegraph,45
+47,2012,FOX News,124
+48,2012,Forbes,21
+49,2012,Guardian US,36
+50,2012,Huffington Post,115
+51,2012,LA Times,82
+52,2012,MSNBC,67
+53,2012,NY Post,68
+54,2012,New York Times,24
+55,2012,Newsweek ,9
+56,2012,Reuters ,103
+57,2012,The Boston Globe,114
+58,2012,Time,38
+59,2012,USA Today,26
+60,2012,Wall Street Journal,63
+61,2012,Washington Post,122
+62,2012,cbs news,93
+63,2012,sfchronicle,11
+64,2013,CNET,8
+65,2013,CNN,142
+66,2013,Daily Mail,134
+67,2013,Daily News,93
+68,2013,Daily Telegraph,34
+69,2013,FOX News,200
+70,2013,Forbes,27
+71,2013,Guardian US,60
+72,2013,Huffington Post,470
+73,2013,LA Times,133
+74,2013,MSNBC,188
+75,2013,NY Post,41
+76,2013,New York Times,92
+77,2013,Newsweek ,6
+78,2013,Reuters ,169
+79,2013,The Boston Globe,142
+80,2013,Time,72
+81,2013,USA Today,68
+82,2013,Wall Street Journal,87
+83,2013,Washington Post,323
+84,2013,cbs news,105
+85,2013,sfchronicle,23
+86,2014,CNN,165
+87,2014,Daily Mail,322
+88,2014,Daily News,96
+89,2014,Daily Telegraph,71
+90,2014,FOX News,207
+91,2014,Forbes,11
+92,2014,Guardian US,43
+93,2014,Huffington Post,337
+94,2014,LA Times,162
+95,2014,MSNBC,180
+96,2014,NY Post,52
+97,2014,New York Times,24
+98,2014,Newsweek ,34
+99,2014,Reuters ,145
+100,2014,The Boston Globe,29
+101,2014,Time,66
+102,2014,USA Today,101
+103,2014,Wall Street Journal,114
+104,2014,Washington Post,265
+105,2014,cbs news,112
+106,2014,sfchronicle,177
+107,2015,CNET,1
+108,2015,CNN,137
+109,2015,Daily Mail,331
+110,2015,Daily News,55
+111,2015,Daily Telegraph,49
+112,2015,FOX News,190
+113,2015,Forbes,9
+114,2015,Guardian US,44
+115,2015,Huffington Post,208
+116,2015,LA Times,301
+117,2015,MSNBC,107
+118,2015,NY Post,35
+119,2015,New York Times,12
+120,2015,Newsweek ,39
+121,2015,Reuters ,151
+122,2015,The Boston Globe,5
+123,2015,Time,41
+124,2015,USA Today,65
+125,2015,Wall Street Journal,69
+126,2015,Washington Post,281
+127,2015,cbs news,94
+128,2015,sfchronicle,178
+129,2016,CNET,1
+130,2016,CNN,117
+131,2016,Daily Mail,420
+132,2016,Daily News,55
+133,2016,Daily Telegraph,15
+134,2016,FOX News,155
+135,2016,Forbes,15
+136,2016,Guardian US,40
+137,2016,Huffington Post,140
+138,2016,LA Times,178
+139,2016,MSNBC,98
+140,2016,NY Post,34
+141,2016,New York Times,13
+142,2016,Newsweek ,23
+143,2016,Reuters ,95
+144,2016,The Boston Globe,5
+145,2016,Time,62
+146,2016,USA Today,73
+147,2016,Wall Street Journal,65
+148,2016,Washington Post,308
+149,2016,cbs news,77
+150,2016,sfchronicle,134
+151,2017,CNET,1
+152,2017,CNN,57
+153,2017,Daily Mail,296
+154,2017,Daily News,53
+155,2017,Daily Telegraph,22
+156,2017,FOX News,139
+157,2017,Forbes,12
+158,2017,Guardian US,23
+159,2017,Huffington Post,89
+160,2017,LA Times,77
+161,2017,MSNBC,36
+162,2017,NY Post,32
+163,2017,New York Times,4
+164,2017,Newsweek ,40
+165,2017,Reuters ,38
+166,2017,The Boston Globe,11
+167,2017,Time,36
+168,2017,USA Today,50
+169,2017,Wall Street Journal,21
+170,2017,Washington Post,215
+171,2017,cbs news,158
+172,2017,sfchronicle,101
+173,2018,CNN,103
+174,2018,Daily Mail,162
+175,2018,Daily News,16
+176,2018,Daily Telegraph,12
+177,2018,FOX News,69
+178,2018,Forbes,5
+179,2018,Guardian US,23
+180,2018,Huffington Post,38
+181,2018,LA Times,22
+182,2018,MSNBC,14
+183,2018,NY Post,12
+184,2018,New York Times,10
+185,2018,Newsweek ,23
+186,2018,Reuters ,21
+187,2018,The Boston Globe,9
+188,2018,Time,15
+189,2018,USA Today,28
+190,2018,Wall Street Journal,12
+191,2018,Washington Post,118
+192,2018,cbs news,17
+193,2018,sfchronicle,41
+194,2019,CNET,1
+195,2019,CNN,53
+196,2019,Daily Mail,69
+197,2019,Daily News,5
+198,2019,FOX News,61
+199,2019,Forbes,10
+200,2019,Guardian US,10
+201,2019,Huffington Post,10
+202,2019,LA Times,14
+203,2019,MSNBC,16
+204,2019,NY Post,23
+205,2019,New York Times,5
+206,2019,Newsweek ,14
+207,2019,Reuters ,24
+208,2019,The Boston Globe,11
+209,2019,Time,8
+210,2019,USA Today,30
+211,2019,Wall Street Journal,4
+212,2019,Washington Post,101
+213,2019,cbs news,19
+214,2019,sfchronicle,33
+215,2020,CNN,19
+216,2020,Daily Mail,15
+217,2020,Daily News,1
+218,2020,Daily Telegraph,2
+219,2020,FOX News,15
+220,2020,Forbes,1
+221,2020,Guardian US,2
+222,2020,Huffington Post,3
+223,2020,LA Times,22
+224,2020,MSNBC,9
+225,2020,NY Post,5
+226,2020,New York Times,2
+227,2020,Newsweek ,3
+228,2020,Reuters ,1
+229,2020,The Boston Globe,1
+230,2020,Time,1
+231,2020,USA Today,3
+232,2020,Wall Street Journal,5
+233,2020,Washington Post,29
+234,2020,sfchronicle,9
