@@ -6,23 +6,36 @@ let barchart;
 let state = {
     data: [],
     domain: [],
+    series: []
 };
 
-d3.csv("./data/media_occurences.csv", function(d) {
+d3.csv("./data/media_occurences_wide.csv", function(d) {
     return {
         year: new Date(+d.year, 0, 1),
-        media_name: d.media_name,
-        count: +d.count,
+        LATimes: +d["LA Times"],
+        Reuters: +d['Reuters'],
+        NYT: +d["New York Times"],
+        CNN: +d["CNN"],
+        WaPo: +d["Washington Post"],
+        Fox: +d["FOX News"],
+        MSNBC: +d["MSNBC"],
+        total: +d['total']
     };
     })
     .then(data => {
-        state.data = data;
+      console.log("data", data)
+      state.data = data;
         // state.domain = [
         //     0,
         //     // need to add maximum y-axis value here
         //     state.data.forEach(year => )
         // ]
-        init();
+      const series = d3.stack()
+        .keys(data.columns.slice(2))(data)
+        .map(d => (d.forEach(v => v.key = d.key), d))
+      state.series = series
+      console.log("series", series)
+      init();
     })
 
 function init() {

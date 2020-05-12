@@ -64,6 +64,7 @@ max_users = " and ".join(users)
 ########### data re-shaping
 
 import pandas as pd 
+import numpy as np
 
 data = pd.read_csv("/Users/hopecj/personal/gitmo/data/guantanamo-all-story-urls-20200503233646.csv")
 data['count'] = 1
@@ -75,6 +76,13 @@ out = data.groupby(['year','media_name']).sum()
 out = data.groupby(['year','media_name'])['count'].count()
 out = out.to_frame()
 out.reset_index(inplace=True)
+
+out_wide = out.pivot(index='year', columns='media_name', values='count')
+rowsums = out_wide.sum(axis=1)
+# put "total" column first
+out_wide.insert(loc=0, column='total', value=rowsums)
+
+out_wide.to_csv("/Users/hopecj/personal/gitmo/data/media_occurences_wide.csv")
 
 out.to_csv("/Users/hopecj/personal/gitmo/data/media_occurences.csv")
 
