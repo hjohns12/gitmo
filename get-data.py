@@ -77,3 +77,4 @@ out = out.to_frame()
 out.reset_index(inplace=True)
 
 out.to_csv("/Users/hopecj/personal/gitmo/data/media_occurences.csv")
+
