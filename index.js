@@ -9,33 +9,22 @@ let state = {
     series: []
 };
 
-d3.csv("./data/media_occurences_wide.csv", function(d) {
-    return {
-        year: new Date(+d.year, 0, 1),
-        LATimes: +d["LA Times"],
-        Reuters: +d['Reuters'],
-        NYT: +d["New York Times"],
-        CNN: +d["CNN"],
-        WaPo: +d["Washington Post"],
-        Fox: +d["FOX News"],
-        MSNBC: +d["MSNBC"],
-        total: +d['total']
-    };
-    })
-    .then(data => {
-      console.log("data", data)
-      state.data = data;
-        // state.domain = [
-        //     0,
-        //     // need to add maximum y-axis value here
-        //     state.data.forEach(year => )
-        // ]
-      const series = d3.stack()
-        .keys(data.columns.slice(2))(data)
-        .map(d => (d.forEach(v => v.key = d.key), d))
-      state.series = series
-      console.log("series", series)
-      init();
+d3.csv("./data/media_occurences_wide.csv", d3.autoType)
+  .then(data => {
+    console.log("data", data);
+    state.data = data;
+      // state.domain = [
+      //     0,
+      //     // need to add maximum y-axis value here
+      //     state.data.forEach(year => )
+      // ]
+    const series = d3.stack()
+      .keys(data.columns.slice(1))(data)
+      .map(d => (d.forEach(v => v.key = d.key), d))
+    state.series = series
+    console.log("series", series)
+    console.log("series max", d3.max(state.series, d => d3.max(d, d => d[1])))
+    init();
     })
 
 function init() {

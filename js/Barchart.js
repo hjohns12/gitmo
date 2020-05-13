@@ -2,7 +2,7 @@ class Barchart {
     constructor(state, setGlobalState) {
         this.width = window.innerWidth * 0.6
         this.height = window.innerHeight * 0.8;
-        this.margins = { top: 0, bottom: 50, left: 20, right: 20 };
+        this.margins = { top: 0, bottom: 50, left: 40, right: 20 };
 
         this.svg = d3
           .select("#barchart")
@@ -11,14 +11,13 @@ class Barchart {
           .attr("height", this.height);
         
         this.xScale = d3
-            .scaleTime()
-            .domain(d3.extent(state.data, d => d.year))
+            .scaleBand()
+            .domain(state.data.map(d => d.year))
             .range([this.margins.left, this.width - this.margins.right])
 
         this.yScale = d3
             .scaleLinear()
-            // .domain([0, d3.max(state.data, d => d.count)])
-            .domain([0, 2800])
+            .domain([0, d3.max(state.series, d => d3.max(d, d => d[1]))])
             .range([this.height - this.margins.bottom, this.margins.top]);
 
         this.xAxis = d3.axisBottom(this.xScale);

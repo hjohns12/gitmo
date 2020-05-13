@@ -81,6 +81,7 @@ out_wide = out.pivot(index='year', columns='media_name', values='count')
 rowsums = out_wide.sum(axis=1)
 # put "total" column first
 out_wide.insert(loc=0, column='total', value=rowsums)
+out_wide.fillna(0, inplace=True)
 
 out_wide.to_csv("/Users/hopecj/personal/gitmo/data/media_occurences_wide.csv")
 
