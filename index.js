@@ -24,6 +24,7 @@ d3.csv("./data/media_occurences_wide.csv", d3.autoType)
     state.series = series
     console.log("series", series)
     console.log("series max", d3.max(state.series, d => d3.max(d, d => d[1])))
+    console.log("series domain map", state.series.map(d => d.key))
     init();
     })
 
