@@ -5,19 +5,14 @@ let barchart;
 // global state
 let state = {
     data: [],
-    domain: [],
-    series: []
+    series: [],
+    selectedSource: null,
 };
 
 d3.csv("./data/media_occurences_wide.csv", d3.autoType)
   .then(data => {
     console.log("data", data);
     state.data = data;
-      // state.domain = [
-      //     0,
-      //     // need to add maximum y-axis value here
-      //     state.data.forEach(year => )
-      // ]
     const series = d3.stack()
       .keys(data.columns.slice(1))(data)
       .map(d => (d.forEach(v => v.key = d.key), d))

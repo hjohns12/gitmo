@@ -30,7 +30,7 @@ class Barchart {
         this.xAxis = d3.axisBottom(this.xScale);
         this.yAxis = d3.axisLeft(this.yScale);
 
-          // add the xAxis
+        // add the xAxis
         this.svg
           .append("g")
           .attr("class", "axis x-axis")
@@ -56,6 +56,25 @@ class Barchart {
           .text("# stories");
         
       this.container = this.svg.append("g").attr("class", "bars-container")
+
+      // set up drop-down 
+      this.selectElement = d3.select("#dropdown").on("change", function() {
+        console.log("new selected source is", this.value);
+        setGlobalState({selectedSource: this.value})
+      });
+    
+      // add in dropdown options from the unique values in the data
+      this.selectElement
+        .selectAll("option")
+        .data([
+          ...Array.from(new Set(state.series.map(d => d.key))),
+          "Select a source",
+        ])
+        .join("option")
+        .attr("value", d => d)
+        .text(d => d);
+
+      this.selectElement.property("value", "Select a source");
     }
 
     draw(state, setGlobalState) {
