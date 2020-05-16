@@ -7,19 +7,16 @@ let state = {
     data: [],
     series: [],
     selectedSource: null,
+    filteredSeries: []
 };
 
 d3.csv("./data/media_occurences_wide.csv", d3.autoType)
   .then(data => {
-    console.log("data", data);
     state.data = data;
     const series = d3.stack()
       .keys(data.columns.slice(1))(data)
       .map(d => (d.forEach(v => v.key = d.key), d))
     state.series = series
-    console.log("series", series)
-    console.log("series max", d3.max(state.series, d => d3.max(d, d => d[1])))
-    console.log("series domain map", state.series.map(d => d.key))
     init();
     })
 

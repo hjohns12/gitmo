@@ -57,11 +57,13 @@ class Barchart {
         
       this.container = this.svg.append("g").attr("class", "bars-container")
 
-      // set up drop-down 
+      // set up drop-down and add value to global state 
       this.selectElement = d3.select("#dropdown").on("change", function() {
         console.log("new selected source is", this.value);
-        setGlobalState({selectedSource: this.value})
-      });
+        let tempFilterDat = state.series.filter(d => d.key === this.value)
+        setGlobalState({selectedSource: this.value,
+                        series: tempFilterDat})
+        });
     
       // add in dropdown options from the unique values in the data
       this.selectElement
