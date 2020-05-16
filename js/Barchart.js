@@ -8,24 +8,15 @@ class Barchart {
           .select("#barchart")
           .append("svg")
           .attr("width", this.width)
-          .attr("height", this.height);
-        
-        // this.color = d3.scaleOrdinal()
-        //   .domain(state.series.map(d => d.key))
-        //   .range(d3.schemeSpectral[state.series.length])
-        //   .unknown("#ccc")
+          .attr("height", this.height)
 
-        // this.color = d3.scaleSequential(d => d3.interpolateBuPu(d));
-        // this.cScale = d3.scaleOrdinal(d3.schemePaired);
-        // this.cScale
-        //     .domain(state.series.map(d => d.type));
+        this.color = d3.scaleOrdinal()
+          .domain(state.series.map(d => d.key))
+          // .range(d3.schemeSet3)
+          .range(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928',
+                  '#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','lime','#bc80bd'])
+          .unknown("#ccc")
 
-        this.color = d3.scaleOrdinal(d3.schemeSpectral)
-            .domain(state.series.map(d => d.key))
-            // .range(d3.schemeSpectral[series.length])
-            .unknown("#ccc")
-
-        
         this.xScale = d3
           .scaleBand()
           .domain(state.data.map(d => d.year))
@@ -65,7 +56,6 @@ class Barchart {
           .text("# stories");
         
       this.container = this.svg.append("g").attr("class", "bars-container")
-
     }
 
     draw(state, setGlobalState) {
@@ -73,7 +63,6 @@ class Barchart {
           .selectAll("g.child")
           .data(state.series)
           .join("g")
-          .attr("fill", d => this.color(d.key))
           .selectAll("rect")
           .data(d => d)
           .join("rect")
@@ -81,8 +70,9 @@ class Barchart {
           .attr("y", d => this.yScale(d[1]))
           .attr("height", d => this.yScale(d[0]) - this.yScale(d[1]))
           .attr("width", this.xScale.bandwidth())
+          .attr("fill", d => this.color(d.key))
           .append("title")
-        //   .text(d => `${d.data.year} ${d.key} ${formatValue(d.data[d.key])}`);
+          .text(d => `${d.key}, ${d.data.year} `);
 
 
 
