@@ -121,21 +121,11 @@ class Barchart {
                 .duration(250)
                 .selectAll("rect")
                 .transition()
-                .duration(250)
+                .duration(150)
                 .attr("y", d => yScale(d[1] - d[0]))
                 .attr("height", d => this.height - this.margins.bottom - yScale(d[1] - d[0]))
                 ),
             exit => exit.remove()
-            // exit =>
-            // exit.call(exit =>
-            //   // exit selections -- all the `child "SOURCE"` element that no longer match to HTML elements
-            //   exit
-            //     .transition()
-            //     .delay(d => 50 * d.data.year)
-            //     .duration(500)
-            //     .attr("y", this.margins.bottom)
-            //     .remove()
-            // )
         );
     }
 
