@@ -121,9 +121,9 @@ class Barchart {
                 .duration(250)
                 .selectAll("rect")
                 .transition()
-                // .duration(250)
-                // .attr("y", d => yScale(d[1]) - yScale(d[0]))
-                // .attr("height", d => yScale(d[0]) - yScale(d[1]))
+                .duration(250)
+                .attr("y", d => yScale(d[1] - d[0]))
+                .attr("height", d => this.height - this.margins.bottom - yScale(d[1] - d[0]))
                 ),
             exit => exit.remove()
             // exit =>
