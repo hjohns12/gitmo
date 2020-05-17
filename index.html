@@ -2,25 +2,51 @@
   <head>
     <meta charset="utf-8">
     <title>Guantanamo Bay</title>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">    <link rel="stylesheet" href="./style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet" href="../css/style.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet" href="../css/style.css">
   </head>
   <body>
-    <header>
-      <h1>Guantanamo Bay and the Media</h1>
-    </header>
+    <div class="section" id="title">
+      <div class="text">
+        <br />
+        <h1>Who Wants to Read About Guantanamo Bay?</h1>
+        <h2>The past ten years of news stories show declining coverage, while the number of detained people has plateaued.</h2>
+        <p>May 2020</p><br />
+      </div>
+    </div>
 
-    <div id="dashboard">
-      <label for="dropdown">Select a Source</label>
+    <!-- text -->
+    <div class="section">
+      <div class="text"><br /><br />
+        <p>
+          INTRO TEXT HERE
+        </p>
+      </div>
+    </div>
+
+    <!-- line chart -->
+    <div class="section chart-section">
+
+    </div>
+
+    <!-- text -->
+    <div class="section">
+      <div class="text"><br /><br />
+        <p>
+          TEXT ABOUT BREAKING IT DOWN BY MEDIA OUTLETS HERE
+        </p>
+      </div>
+    </div>
+
+    <!-- stacked bar chart -->
+    <div class="section chart-section" id="shaded">
+      <div class="chart-title">Reporting by Source</div>
+      <label for="dropdown" class="label">Select a Source</label>
       <select id="dropdown" name="dropdown"></select>
       <div id="barchart"> </div>
-      </div>
-   </div>
+    </div>
 
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://d3js.org/d3-color.v1.min.js"></script>
-    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script type="module" src="./index.js"></script>
   </body>
 </html>

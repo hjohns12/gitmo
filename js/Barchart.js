@@ -21,6 +21,7 @@ class Barchart {
           .scaleBand()
           .domain(state.data.map(d => d.year))
           .range([this.margins.left, this.width - this.margins.right])
+          .paddingInner(0.3)
 
         let yScale = d3
           .scaleLinear()
@@ -111,6 +112,7 @@ class Barchart {
               .attr("height", d => yScale(d[0]) - yScale(d[1]))
               .attr("width", this.xScale.bandwidth())
               .attr("fill", d => this.color(d.key))
+              .attr("opacity", .7)
               .append("title")
               .text(d => `${d.key}, ${d.data.year} `)
               ),
@@ -120,12 +122,19 @@ class Barchart {
                 .transition()
                 .duration(250)
                 .selectAll("rect")
-                .transition()
-                .duration(150)
                 .attr("y", d => yScale(d[1] - d[0]))
                 .attr("height", d => this.height - this.margins.bottom - yScale(d[1] - d[0]))
                 ),
             exit => exit.remove()
+        )
+        .call(
+          selection =>
+            selection
+              .transition() // initialize transition
+              .duration(200) // duration 1000ms / 1s
+              .attr("opacity", 1)
+              // .attr("y", d => yScale(d[1] - d[0])) // started from the bottom, now we're here
+              // .attr("height", d => this.height - this.margins.bottom - yScale(d[1] - d[0]))
         );
     }
 
