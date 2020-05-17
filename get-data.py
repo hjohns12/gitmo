@@ -68,10 +68,19 @@ import numpy as np
 
 data = pd.read_csv("/Users/hopecj/personal/gitmo/data/guantanamo-all-story-urls-20200503233646.csv")
 data['count'] = 1
-splits = data['publish_date'].str.split("-", expand=True)
+# if summing by year (for media breakdown)
+splits = data['publish_date'].str.split("/", expand=True)
 data['year'] = splits[0]
+# if summing by date (for line chart)
+splits = data['publish_date'].str.split(" ", expand=True)
+data['date'] = splits[0]
+out = data.groupby(['date']).sum()
+out.to_csv("/Users/hopecj/personal/gitmo/data/media_by_date.csv")
+
+
 
 out = data.groupby(['year','media_name']).sum()
+
 
 out = data.groupby(['year','media_name'])['count'].count()
 out = out.to_frame()
