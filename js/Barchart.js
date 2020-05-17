@@ -22,13 +22,26 @@ class Barchart {
           .domain(state.data.map(d => d.year))
           .range([this.margins.left, this.width - this.margins.right])
 
-        this.yScale = d3
+        let yScale = d3
           .scaleLinear()
           .domain([0, d3.max(state.series, d => d3.max(d, d => d[1]))])
           .range([this.height - this.margins.bottom, this.margins.top]);
 
         this.xAxis = d3.axisBottom(this.xScale);
-        this.yAxis = d3.axisLeft(this.yScale);
+        let yAxis = d3.axisLeft(yScale);
+
+        // add the yAxis
+        this.svg
+          .append("g")
+          .attr("class", "axis y-axis")
+          .attr("transform", `translate(${this.margins.left},0)`)
+          .call(yAxis)
+          .append("text")
+          .attr("class", "axis-label")
+          .attr("y", "50%")
+          .attr("dx", "-3em")
+          .attr("writing-mode", "vertical-rl")
+          .text("# stories");
 
         // add the xAxis
         this.svg
@@ -41,28 +54,13 @@ class Barchart {
           .attr("x", "50%")
           .attr("dy", "3em")
           .text("Year");
-
-        // add the yAxis
-        this.svg
-          .append("g")
-          .attr("class", "axis y-axis")
-          .attr("transform", `translate(${this.margins.left},0)`)
-          .call(this.yAxis)
-          .append("text")
-          .attr("class", "axis-label")
-          .attr("y", "50%")
-          .attr("dx", "-3em")
-          .attr("writing-mode", "vertical-rl")
-          .text("# stories");
         
       this.container = this.svg.append("g").attr("class", "bars-container")
 
       // set up drop-down and add value to global state 
       this.selectElement = d3.select("#dropdown").on("change", function() {
         console.log("new selected source is", this.value);
-        let tempFilterDat = state.series.filter(d => d.key === this.value)
-        setGlobalState({selectedSource: this.value,
-                        series: tempFilterDat})
+        setGlobalState({selectedSource: this.value})
         });
     
       // add in dropdown options from the unique values in the data
@@ -70,35 +68,75 @@ class Barchart {
         .selectAll("option")
         .data([
           ...Array.from(new Set(state.series.map(d => d.key))),
-          "Select a source",
+          state.selectedSource,
         ])
         .join("option")
         .attr("value", d => d)
         .text(d => d);
 
-      this.selectElement.property("value", "Select a source");
+      this.selectElement.property("value", state.selectedSource);
     }
 
     draw(state, setGlobalState) {
-        this.container
-          .selectAll("g.child")
-          .data(state.series)
-          .join("g")
-          .selectAll("rect")
-          .data(d => d)
-          .join("rect")
-          .attr("x", (d, i) => this.xScale(d.data.year))
-          .attr("y", d => this.yScale(d[1]))
-          .attr("height", d => this.yScale(d[0]) - this.yScale(d[1]))
-          .attr("width", this.xScale.bandwidth())
-          .attr("fill", d => this.color(d.key))
-          .append("title")
-          .text(d => `${d.key}, ${d.data.year} `);
+      let filteredData = state.series;
+      let yScale = d3
+        .scaleLinear()
+        .domain([0, d3.max(filteredData, d => d3.max(d, d => d[1]))])
+        .range([this.height - this.margins.bottom, this.margins.top]);
+      if (state.selectedSource !== "All") {
+        filteredData = state.series.filter(d => d.key === state.selectedSource);
+        yScale.domain([0, d3.max(filteredData, d => d3.max(d, d => d[1] - d[0]))]);
+      }
+      let yAxis = d3.axisLeft(yScale);
+      console.log("yScale domain", yScale.domain()[1])
 
+      // redraw y-axis
+      d3.select("g.y-axis")
+        .transition()
+        .duration(1000)
+        .call(yAxis.scale(yScale)); 
 
-
-
-
+      this.container
+        .selectAll("g.child")
+        .data(filteredData, d => d.key)
+        .join(enter => enter
+            .append("g")
+            .attr("class", d => `child ${d.key}`)
+            .call(sel => sel.append("g")
+              .selectAll("rect")
+              .data(d => d)
+              .join("rect")
+              .attr("x", d => this.xScale(d.data.year))
+              .attr("y", d => yScale(d[1]))
+              .attr("height", d => yScale(d[0]) - yScale(d[1]))
+              .attr("width", this.xScale.bandwidth())
+              .attr("fill", d => this.color(d.key))
+              .append("title")
+              .text(d => `${d.key}, ${d.data.year} `)
+              ),
+            update =>
+            update.call(update =>
+              update
+                .transition()
+                .duration(250)
+                .selectAll("rect")
+                .transition()
+                // .duration(250)
+                // .attr("y", d => yScale(d[1]) - yScale(d[0]))
+                // .attr("height", d => yScale(d[0]) - yScale(d[1]))
+                ),
+            exit => exit.remove()
+            // exit =>
+            // exit.call(exit =>
+            //   // exit selections -- all the `child "SOURCE"` element that no longer match to HTML elements
+            //   exit
+            //     .transition()
+            //     .delay(d => 50 * d.data.year)
+            //     .duration(500)
+            //     .attr("y", this.margins.bottom)
+            //     .remove()
+            // )
+        );
     }
 
 }

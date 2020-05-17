@@ -6,7 +6,7 @@ let barchart;
 let state = {
     data: [],
     series: [],
-    selectedSource: null,
+    selectedSource: "All",
     filteredSeries: []
 };
 
