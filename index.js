@@ -1,8 +1,10 @@
 import { Barchart } from "../js/Barchart.js";
-import { Linechart } from "../js/Linechart.js";
+import { Slider } from "../js/Slider.js"
+// import { Linechart } from "../js/Linechart.js";
  
 let barchart;
-let linechart;
+// let linechart;
+let slider;
 const parser = d3.timeParse("%m/%d/%y");
 
 
@@ -11,7 +13,8 @@ let state = {
     data: [],
     series: [],
     selectedSource: "All",
-    lineData: []
+    lineData: [],
+    historicalData: [],
 };
 
 //read in data (by year+news source)
@@ -25,16 +28,24 @@ d3.csv("../data/media_occurences_wide.csv", d3.autoType)
     })
 // read in data (by day)
 d3.csv("../data/media_by_date.csv", d => ({
-  year: parser(d.date),
+  date: parser(d.date),
   count: +d.count,
 })).then(raw_data => {
   state.lineData = raw_data;
+});
+// read in data re: nDetained by year
+d3.csv("../data/history.csv", d => ({
+  year: +d.year,
+  value: +d.nDetained,
+})).then(hist_data => {
+  state.historicalData = hist_data;
   init();
 });
 
 function init() {
   barchart = new Barchart(state, setGlobalState);
-  linechart = new Linechart(state, setGlobalState);
+  // linechart = new Linechart(state, setGlobalState);
+  slider = new Slider(state, setGlobalState);
   draw();
 }
 

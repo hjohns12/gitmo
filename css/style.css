@@ -66,4 +66,10 @@
     background-color: #f0f0f0;
     padding: 1em;
   }
+
+  .axis-label {
+    font-size: 14px;
+    fill: black;
+    text-anchor: middle;
+  }
   

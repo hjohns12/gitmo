@@ -11,7 +11,7 @@
         <br />
         <h1>Who Wants to Read About Guantanamo Bay?</h1>
         <h2>The past ten years of news stories show declining coverage, while the number of detained people has plateaued.</h2>
-        <p>May 2020</p><br />
+        <p>Spring 2020</p><br />
       </div>
     </div>
 
@@ -20,14 +20,20 @@
       <div class="text"><br /><br />
         <p>
           INTRO TEXT HERE
+          https://www.nytimes.com/interactive/projects/guantanamo
         </p>
       </div>
     </div>
 
     <!-- line chart -->
     <div class="section chart-section" id="shaded">
-      <div class="chart-title">Stories Over Time</div>
-      <div id="linechart"> </div>
+      <!-- <div class="chart-title">Stories Over Time</div>
+      <div id="linechart"> </div> -->
+    
+      <h2>Historical population of Guantanamo Bay</h2>
+      <!-- https://github.com/johnwalley/d3-simple-slider -->
+        <div class="col-sm-2"><p id="value-slider"></p></div>
+        <div class="col-sm"><div id="my-slider"></div></div>
     </div>
 
     <!-- text -->
@@ -47,7 +53,9 @@
       <div id="barchart"> </div>
     </div>
 
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+    <script src="../lib/d3.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
     <script type="module" src="./index.js"></script>
   </body>
 </html>

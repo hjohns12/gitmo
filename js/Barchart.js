@@ -2,7 +2,7 @@ class Barchart {
     constructor(state, setGlobalState) {
         this.width = window.innerWidth * 0.6
         this.height = window.innerHeight * 0.8;
-        this.margins = { top: 0, bottom: 50, left: 40, right: 20 };
+        this.margins = { top: 0, bottom: 50, left: 50, right: 20 };
 
         this.svg = d3
           .select("#barchart")
