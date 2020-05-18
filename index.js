@@ -18,7 +18,7 @@ let state = {
 };
 
 //read in data (by year+news source)
-d3.csv("../data/media_occurences_wide.csv", d3.autoType)
+d3.csv("./data/media_occurences_wide.csv", d3.autoType)
   .then(data => {
     state.data = data;
     const series = d3.stack()
@@ -27,14 +27,14 @@ d3.csv("../data/media_occurences_wide.csv", d3.autoType)
     state.series = series
     })
 // read in data (by day)
-d3.csv("../data/media_by_date.csv", d => ({
+d3.csv("./data/media_by_date.csv", d => ({
   date: parser(d.date),
   count: +d.count,
 })).then(raw_data => {
   state.lineData = raw_data;
 });
 // read in data re: nDetained by year
-d3.csv("../data/history.csv", d => ({
+d3.csv("./data/history.csv", d => ({
   year: +d.year,
   value: +d.nDetained,
 })).then(hist_data => {
