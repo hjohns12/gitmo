@@ -11,11 +11,11 @@ class Linechart {
           .attr("height", this.height)
 
         const xScale = d3
-          .scaleUtc()
-          .domain(d3.extent(state.lineData, d => d.date))
+          .scaleTime()
+          .domain(d3.extent(state.lineData, d => d.year))
           .range([this.margins.left, this.width - this.margins.right])
 
-        console.log("xScale domain-nline chart", xScale.domain())
+        console.log("xScale domain-line chart", xScale.domain())
 
         const yScale = d3
           .scaleLinear()
@@ -28,7 +28,7 @@ class Linechart {
           // add the xAxis
         this.svg
           .append("g")
-          .attr("class", "axis x-axis")
+          .attr("class", "axis line-x-axis")
           .attr("transform", `translate(0,${this.height - this.margins.bottom})`)
           .call(xAxis)
           .append("text")
@@ -40,7 +40,7 @@ class Linechart {
         // add the yAxis
         this.svg
           .append("g")
-          .attr("class", "axis y-axis")
+          .attr("class", "axis line-y-axis")
           .attr("transform", `translate(${this.margins.left},0)`)
           .call(yAxis)
           .append("text")

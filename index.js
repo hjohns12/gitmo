@@ -28,7 +28,6 @@ d3.csv("../data/media_by_date.csv", d => ({
   year: parser(d.date),
   count: +d.count,
 })).then(raw_data => {
-  console.log("raw_data date", raw_data);
   state.lineData = raw_data;
   init();
 });
