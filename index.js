@@ -1,6 +1,6 @@
-import { Barchart } from "../js/Barchart.js";
-import { Slider } from "../js/Slider.js"
-// import { Linechart } from "../js/Linechart.js";
+import { Barchart } from "js/Barchart.js";
+import { Slider } from "js/Slider.js"
+// import { Linechart } from "js/Linechart.js";
  
 let barchart;
 // let linechart;
