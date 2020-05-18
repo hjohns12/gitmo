@@ -1,8 +1,8 @@
 class Slider {
     constructor(state, setGlobalState) {
         // New York Times
-    var width = 565;
-    var height = 120;
+    var width = 1000;
+    var height = 220;
     var margin = { top: 20, right: 50, bottom: 50, left: 40 };
 
     const dataSlider = state.historicalData;
@@ -48,8 +48,7 @@ class Slider {
       .call(
       d3
           .axisRight(y)
-          .tickValues([1e4])
-          // .tickFormat(d3.format('($.2s'))
+          .ticks(4)
       )
       .call(g => g.select('.domain').remove());
 

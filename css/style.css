@@ -22,20 +22,16 @@
     padding-bottom: 4em;
   }
   
-  .text {
-    color: #323232;
-  }
-  
-  p {
+  /* p {
     font-family: 'Roboto Slab', serif;
     line-height: 1.7;
     font-size: 1.1em;
-  }
+  } */
   
   .section {
     height: fit-content;
-    padding-left: 8em;
-    padding-right: 8em;
+    padding-left: 12em;
+    padding-right: 12em;
     padding-bottom: 2em;
     column-gap: 4em;
   }
@@ -47,13 +43,19 @@
 
   .section > .chart-title {
     font-family: 'Roboto Mono', monospace; 
-    font-size: 3em;
+    font-size: 1.5em;
     font-weight: bold;
   }
 
   .section > .label {
     font-family: 'Roboto Slab', serif;
     font-size: 1.1em;
+  }
+
+  .section > .text {
+    font-family: 'Source Sans Pro', sans-serif;    
+    line-height: 1.7;
+    font-size: 1.2em;
   }
   
   .section#title  {
