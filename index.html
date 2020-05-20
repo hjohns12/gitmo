@@ -2,47 +2,74 @@
   <head>
     <meta charset="utf-8">
     <title>Guantanamo Bay</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+
   </head>
   <body>
     <div class="section" id="title">
       <div class="text">
-        <br />
-        <h1>Who's Still Talking About Guantanamo Bay?</h1>
-        <h2>The past ten years of news stories show declining coverage of the topic by the popular press, while a small number of people remain in detention.</h2>
-        <p>Spring 2020</p><br />
+        <h1>Who's Still Talking About Guantánamo Bay?</h1>
+        <h2>The past decade of news stories show declining coverage of the topic by the popular press, while a small number of people remain in detention.</h2>
+        <p>Spring 2020</p>
       </div>
     </div>
 
     <!-- text -->
     <div class="section">
-      <div class="text"><br /><br />
+      <div class="text">
         <p>
-          Since the early 1990's, scores of refugees and suspected terrorists have been detained at Guantanamo Bay. In 2009, President 
-          Obama signed an executive order to close Guantanamo Bay within a year. More than a decade later, forty individuals
-          are still being held inside the prison. In response to the continued operation of Guantanamo Bay as a detention facility, I 
-          investigated how the media has covered the topic over the past decade.
+          Since the early 1990's, scores of refugees and suspected terrorists have been detained at Guantánamo Bay. In 2009, President 
+          Obama signed an executive order to close Guantánamo Bay within a year. More than a decade later, forty individuals
+          are still being held inside the prison. In response to the continued operation of Guantánamo Bay as a detention facility, I 
+          investigated how the media has covered the topic over the past decade. 
        </p>
+       <p>At the start of the decade, the number of individuals being held inside of the prison at Guantánamo Bay was 192. The <a href="https://www.nytimes.com/interactive/projects/guantanamo">most recent count</a>
+         has the prison population at 40. In contrast to a steady decline in the prison population between 2014 and 2016, the 
+         number of individuals detained from 2017 to present has dropped by one. 
+       </p>
+      </div>
+    </div>
+
+    <!-- stacked bar chart -->
+    <div class="section chart-section" id="shaded">
+      <div class="chart-title">Historical population of Guantánamo Bay</div>
+      <div class="row align-items-center">
+      <!-- https://github.com/johnwalley/d3-simple-slider -->
+        <div class="col-sm-2"><p id="value-slider"></p></div>
+        <div class="col-sm"><div id="my-slider"></div></div>
+        </div>
+    </div>
+
+    <!-- text -->
+    <div class="section">
+      <div class="text">
+        <p>
+          For this project, I collected the titles and sources of all articles published about Guantanamo Bay over the past 
+         decade from 22 American mainstream media outlets. The date with the single most articles published was February
+         23rd, 2016, with 121 unique articles. There was also a spike in June 2014, when five people detained at Guantanamo Bay were
+         transferred to Qatar in exchange for the release of Army Sgt. Bowe Bergdahl. 
+        </p>
       </div>
     </div>
 
     <!-- line chart -->
     <div class="section chart-section" id="shaded">
-      <!-- <div class="chart-title">Stories Over Time</div>
-      <div id="linechart"> </div> -->
-      <div class="chart-title">Historical population of Guantanamo Bay</div>
-      <!-- https://github.com/johnwalley/d3-simple-slider -->
-        <div class="col-sm-2"><p id="value-slider"></p></div>
-        <div class="col-sm"><div id="my-slider"></div></div>
+      <div class="chart-title">Stories Over Time</div>
+      <div id="linechart"> </div>
     </div>
 
     <!-- text -->
     <div class="section">
-      <div class="text"><br /><br />
+      <div class="text">
         <p>
-          Narrative text about media outlets here
+          For this project, I collected the titles and sources of all articles published about Guantanamo Bay over the past 
+         decade from 22 American mainstream media outlets. The date with the single most articles published was February
+         23rd, 2016, with 121 unique articles. There was also a spike in June 2014, when five people detained at Guantanamo Bay were
+         transferred to Qatar in exchange for the release of Army Sgt. Bowe Bergdahl. 
         </p>
       </div>
     </div>

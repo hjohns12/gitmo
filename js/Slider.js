@@ -1,73 +1,68 @@
 class Slider {
     constructor(state, setGlobalState) {
-        // New York Times
-    var width = 1000;
-    var height = 220;
-    var margin = { top: 20, right: 50, bottom: 50, left: 40 };
 
-    const dataSlider = state.historicalData;
-    console.log("data Other", dataSlider);
+    this.width = 1000;
+    this.height = 220;
+    this.margin = { top: 20, right: 50, bottom: 50, left: 40 };
 
-    var svg = d3
+    // const dataSlider = state.historicalData;
+    // console.log("data Other", dataSlider);
+    
+    this.svg = d3
       .select('div#my-slider')
       .append('svg')
-      .attr('width', width)
-      .attr('height', height);
+      .attr('width', this.width)
+      .attr('height', this.height);
 
-    var padding = 0.1;
-
-    var xBand = d3
+    const padding = 0.1;
+    
+    // change this to year
+    const xBand = d3
       .scaleBand()
-      .domain(dataSlider.map(d => d.year))
-      .range([margin.left, width - margin.right])
+      .domain(state.historicalData.map(d => d.year))
+      .range([this.margin.left, this.width - this.margin.right])
       .padding(padding);
 
-    var xLinear = d3
-    .scaleLinear()
-    .domain([
-        d3.min(dataSlider, d => d.year),
-        d3.max(dataSlider, d => d.year),
-    ])
-    .range([
-      margin.left + xBand.bandwidth() / 2 + xBand.step() * padding - 0.5,
-      width -
-      margin.right -
-      xBand.bandwidth() / 2 -
-      xBand.step() * padding -
-      0.5,
-    ]);
-
-    var y = d3
+    this.xLinear = d3
       .scaleLinear()
-      .domain([0, d3.max(dataSlider, d => d.value)])
-      .nice()
-      .range([height - margin.bottom, margin.top]);
+      .domain([
+          d3.min(state.historicalData, d => d.year),
+          d3.max(state.historicalData, d => d.year),
+      ])
+      .range([
+        this.margin.left + xBand.bandwidth() / 2 + xBand.step() * padding - 0.5,
+        this.width - this.margin.right - xBand.bandwidth() / 2 - xBand.step() * padding - 0.5,
+      ]);
 
-    var yAxis = g => g
-      .attr('transform', `translate(${width - margin.right},0)`)
-      .call(
-      d3
-          .axisRight(y)
-          .ticks(4)
-      )
+    const y = d3
+      .scaleLinear()
+      .domain([0, d3.max(state.historicalData, d => d.value)])
+      .nice()
+      .range([this.height - this.margin.bottom, this.margin.top]);
+
+    const yAxis = g => g
+      .attr('transform', `translate(${this.width - this.margin.right},0)`)
+      .call(d3
+            .axisRight(y)
+            .ticks(4))  
       .call(g => g.select('.domain').remove());
 
-    var slider = g =>
-    g.attr('transform', `translate(0,${height - margin.bottom})`).call(
-        d3
-        .sliderBottom(xLinear)
-        .step(1)
-        .ticks(4)
-        .default(9)
-        .on('onchange', value => draw(value))
-    );
+    // this.slider = g =>
+    //   g.attr('transform', `translate(0,${height - margin.bottom})`).call(
+    //     d3
+    //     .sliderBottom(xLinear)
+    //     // .tickFormat(d3.timeFormat('%Y'))
+    //     .step(1)
+    //     .default(2010)
+    //     .on('onchange', value => value)
+    // );
 
-    var bars = svg
+    this.bars = this.svg
       .append('g')
       .selectAll('rect')
-      .data(dataSlider);
+      .data(state.historicalData);
 
-    var barsEnter = bars
+    this.barsEnter = this.bars
       .enter()
       .append('rect')
       .attr('x', d => xBand(d.year))
@@ -75,20 +70,56 @@ class Slider {
       .attr('height', d => y(0) - y(d.value))
       .attr('width', xBand.bandwidth());
 
-    svg.append('g').call(yAxis);
-    svg.append('g').call(slider);
+    this.svg.append('g').call(yAxis);
+    
+    // const draw = selected => {
+    //   barsEnter
+    //     .merge(bars)
+    //     .attr('fill', d => (d.year === selected ? '#bad80a' : '#e0e0e0'));
+  
+    //   d3.select('p#value-slider').text(
+    //     d3.format('$,.2r')(dataSlider[selected - 1].value)
+    //   );
+    // };
+  
+  
+    //   draw(2010);
+  
+    this.slider = g =>
+    g.attr('transform', `translate(0,${this.height - this.margin.bottom})`).call(
+      d3
+      .sliderBottom(this.xLinear)
+      // .tickFormat(d3.timeFormat('%Y'))
+      .step(1)
+      .default(2010)
+      // .on('onchange', value => setGlobalState({selPop: value}))
+    );
 
-    var draw = selected => {
-    barsEnter
-        .merge(bars)
-        .attr('fill', d => (d.year === selected ? '#bad80a' : '#e0e0e0'));
+    this.svg.append('g').call(this.slider);
+  
+  } 
 
-    // d3.select('p#value-slider').text(
-    //     (dataSlider[selected - 1].value)
-    // );
-    };
-    draw(2010);
-    } 
+    draw(state, setGlobalState) {
+
+
+      d3.selectAll('parameter-value')
+        .on('change', value => setGlobalState({selPop: value}))
+
+
+
+
+      // this.barsEnter
+      //   .merge(this.bars)
+      //   .attr('fill', d => (d.year === this.selected ? '#bad80a' : '#e0e0e0')); // not working
+
+
+    }
+
+
+
+
+
+
 }
 
 export { Slider };

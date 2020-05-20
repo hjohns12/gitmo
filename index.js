@@ -15,6 +15,7 @@ let state = {
     selectedSource: "All",
     lineData: [],
     historicalData: [],
+    selPop: null,
 };
 
 //read in data (by year+news source)
@@ -51,6 +52,7 @@ function init() {
 
 function draw() {
     barchart.draw(state, setGlobalState);
+    slider.draw(state, setGlobalState);
   }
 
 // state-updating function
