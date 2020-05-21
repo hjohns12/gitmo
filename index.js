@@ -1,9 +1,9 @@
 import { Barchart } from "./js/Barchart.js";
 import { Slider } from "./js/Slider.js"
-// import { Linechart } from "./js/Linechart.js";
+import { Linechart } from "./js/Linechart.js";
  
 let barchart;
-// let linechart;
+let linechart;
 let slider;
 const parser = d3.timeParse("%m/%d/%y");
 
@@ -34,19 +34,21 @@ Promise.all([
     .map(d => (d.forEach(v => v.key = d.key), d))
   state.series = series;
   state.lineData = data[1];
+  console.log("line data", state.lineData);
   state.historicalData = data[2];
   init();
 })
 
 function init() {
   barchart = new Barchart(state, setGlobalState);
-  // linechart = new Linechart(state, setGlobalState);
+  linechart = new Linechart(state, setGlobalState);
   slider = new Slider(state, setGlobalState);
   draw();
 }
 
 function draw() {
     barchart.draw(state, setGlobalState);
+    // linechart.draw(state, setGlobalState);
     slider.draw(state, setGlobalState);
   }
 

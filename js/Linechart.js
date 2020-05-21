@@ -1,8 +1,8 @@
 class Linechart {
     constructor(state, setGlobalState) {
         this.width = window.innerWidth * 0.6
-        this.height = window.innerHeight * 0.8;
-        this.margins = { top: 0, bottom: 50, left: 40, right: 20 };
+        this.height = window.innerHeight * 0.5;
+        this.margins = { top: 0, bottom: 50, left: 50, right: 20 };
         let xScale;
         let yScale;
         let xAxis;
@@ -11,7 +11,7 @@ class Linechart {
 
         svg = d3
           .select("#linechart")
-          .append("svg-line")
+          .append("svg")
           .attr("width", this.width)
           .attr("height", this.height)
 
@@ -53,20 +53,19 @@ class Linechart {
           .attr("dy", "3em")
           .text("Date");
 
-        const line = d3.line()
-          .defined(d => !isNaN(d.value))
-          .x(d => x(d.date))
-          .y(d => y(d.count))
+        const line = d3
+          .line()
+          .x(d => xScale(d.date))
+          .y(d => yScale(d.count))
         
         svg.append("path")
           .datum(state.lineData)
           .attr("fill", "none")
-          .attr("stroke", "steelblue")
-          .attr("stroke-width", 1.5)
+          .attr("stroke", "black")
+          .attr("stroke-width", .5)
           .attr("stroke-linejoin", "round")
           .attr("stroke-linecap", "round")
           .attr("d", line);
-
     }
 
 
