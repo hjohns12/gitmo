@@ -20,7 +20,9 @@
   
   body {
     font-size: small;
-    padding-top: .5em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+
   }
   
   p {
@@ -34,7 +36,8 @@
     height: fit-content;
     padding-left: 12em;
     padding-right: 12em;
-    padding-bottom: 2em;
+    padding-bottom: 1em;
+    padding-top:1em;
     column-gap: 1em;
   }
   
