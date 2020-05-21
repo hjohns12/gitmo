@@ -8,6 +8,7 @@ class Linechart {
         let xAxis;
         let yAxis;
         let svg;
+        const parseTime = d3.timeParse("%m/%d/%y")
 
         svg = d3
           .select("#linechart")
@@ -26,7 +27,7 @@ class Linechart {
           .range([this.height - this.margins.bottom, this.margins.top]);
 
         xAxis = d3.axisBottom(xScale);
-        yAxis = d3.axisLeft(yScale);
+        yAxis = d3.axisLeft(yScale).ticks(3);
 
         // add the yAxis
         svg
@@ -66,6 +67,49 @@ class Linechart {
           .attr("stroke-linejoin", "round")
           .attr("stroke-linecap", "round")
           .attr("d", line);
+
+        const annotations = [
+          {
+            note: { label: "Detainees transferred in exchange for release of Bowe Bergdahl",
+                    title: "6/2/14",
+                    wrap: 130 //custom text wrapping
+                  },
+            type: d3.annotationCalloutElbow, 
+            x: xScale(parseTime("6/2/14")),
+            y: yScale(80),
+            dy: 37,
+            dx: -100,
+          },
+            {
+              note: { label: "Obama sends Congress plan to close Guantánamo Bay",
+                      title: "2/23/16",
+                      wrap: 250 //custom text wrapping
+                    },
+              type: d3.annotationCalloutElbow, 
+              x: xScale(parseTime("2/23/16")),
+              y: yScale(121),
+              dx: -100,
+              dy: 0
+            },
+            {
+              note: { label: "Trump pledges to send New York truck attacker to Guantánamo Bay",
+                      title: "11/2/17",
+                      wrap: 125 //custom text wrapping
+                    },
+              type: d3.annotationCalloutElbow, 
+              x: xScale(parseTime("11/2/17")),
+              y: yScale(69),
+              dy: 37,
+              dx: 42,
+            }
+          ]
+          const makeAnnotations = d3.annotation()
+            .annotations(annotations)
+          
+          svg
+            .append("g")
+            .attr("class", "annotation-group")
+            .call(makeAnnotations)
     }
 
 
