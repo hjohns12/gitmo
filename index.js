@@ -16,6 +16,7 @@ let state = {
     lineData: [],
     historicalData: [],
     selPop: null,
+    hover: null,
 };
 
 //read in all data
@@ -26,6 +27,7 @@ Promise.all([
     count: +d.count })),
   d3.csv("./data/history.csv", d => ({
       year: +d.year,
+      // year: new Date(+d.year, 0, 1),
       value: +d.nDetained })),
 ]).then(data => {
   state.data = data[0];
@@ -49,7 +51,7 @@ function init() {
 function draw() {
     barchart.draw(state, setGlobalState);
     // linechart.draw(state, setGlobalState);
-    slider.draw(state, setGlobalState);
+    // slider.draw(state, setGlobalState);
   }
 
 // state-updating function

@@ -1,11 +1,20 @@
 class Barchart {
     constructor(state, setGlobalState) {
         this.width = window.innerWidth * 0.6
-        this.height = window.innerHeight * 0.8;
-        this.margins = { top: 0, bottom: 50, left: 50, right: 20 };
+        this.height = window.innerHeight * 0.9;
+        this.margins = { top: 0, bottom: 40, left: 50, right: 20 };
 
-        this.svg = d3
-          .select("#barchart")
+        this.container = d3.select('#barchart').style('position', 'relative');
+
+        this.tooltip = this.container
+          .append('div')
+          .attr('class', 'tooltip')
+          .attr('width', 100)
+          .attr('height', 100)
+          .style('position', 'absolute')
+          .style('background-color', 'white');
+
+        this.svg = this.container
           .append("svg")
           .attr("width", this.width)
           .attr("height", this.height)
@@ -56,7 +65,7 @@ class Barchart {
           .attr("dy", "3em")
           .text("Year");
         
-      this.container = this.svg.append("g").attr("class", "bars-container")
+      this.barscontainer = this.svg.append("g").attr("class", "bars-container")
 
       // set up drop-down and add value to global state 
       this.selectElement = d3.select("#dropdown").on("change", function() {
@@ -79,6 +88,7 @@ class Barchart {
     }
 
     draw(state, setGlobalState) {
+      let hover = null;
       let filteredData = state.series;
       let yScale = d3
         .scaleLinear()
@@ -97,7 +107,7 @@ class Barchart {
         .duration(1000)
         .call(yAxis.scale(yScale)); 
 
-      this.container
+      this.barscontainer
         .selectAll("g.child")
         .data(filteredData, d => d.key)
         .join(enter => enter
@@ -113,8 +123,35 @@ class Barchart {
               .attr("width", this.xScale.bandwidth())
               .attr("fill", d => this.color(d.key))
               .attr("opacity", .7)
-              .append("title")
-              .text(d => `${d.key}, ${d.data.year} `)
+              .on("mouseover", d => {
+                hover = {
+                  translate: [
+                    // center top left corner of the tooltip in center of tile
+                    this.xScale(d.data.year),
+                    yScale(d[1]),
+                  ],
+                  name: d.key,
+                  value: d.data.year,
+                };
+                console.log("hover", hover);
+                if (hover) {
+                  this.tooltip
+                    .html(
+                      `
+                      <div>Name: ${hover.name}</div>
+                      <div>Value: ${hover.value}</div>
+                    `
+                    )
+                    .transition()
+                    // .duration(500)
+                    .style(
+                      "transform",
+                      `translate(${hover.translate[0]}px,${hover.translate[1]}px)`
+                    );
+                }
+              })
+              // .append("title")
+              // .text(d => `${d.key} ${d.data.year} `)
               ),
             update =>
             update.call(update =>
@@ -127,15 +164,16 @@ class Barchart {
                 ),
             exit => exit.remove()
         )
-        .call(
-          selection =>
-            selection
-              .transition() // initialize transition
-              .duration(200) // duration 1000ms / 1s
-              .attr("opacity", 1)
-              // .attr("y", d => yScale(d[1] - d[0])) // started from the bottom, now we're here
-              // .attr("height", d => this.height - this.margins.bottom - yScale(d[1] - d[0]))
-        );
+        // .call(
+        //   selection =>
+        //     selection
+        //       .transition() // initialize transition
+        //       // .duration(200) // duration 1000ms / 1s
+        //       // .attr("opacity", 1)
+        // );
+
+
+
     }
 
 }
